@@ -276,7 +276,8 @@ HIGHEST_KVA_DEC=$(printf "%lu" 0x${HIGHEST_KVA})
 # For Aarch32 (and possibly other arch's as well), we cannot simply assume
 # that the 'start kva' is PAGE_OFFSET; very often it's the start of the kernel
 # module region which is *below* PAGE_OFFSET; check for this and update..
-START_KVA=$(tail -n1 ${KSEGFILE} |cut -d"${gDELIM}" -f1)
+#START_KVA=$(tail -n1 ${KSEGFILE} |cut -d"${gDELIM}" -f1)
+START_KVA=$(grep -w "module" ${KSEGFILE} |cut -d"${gDELIM}" -f1)
 if (( $(echo "0x${START_KVA^^} > 0x${PAGE_OFFSET^^}" |bc -l "obase=16" 2>/dev/null) )); then
   START_KVA=${PAGE_OFFSET}
 fi
