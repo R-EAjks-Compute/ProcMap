@@ -121,14 +121,14 @@ static void query_kernelseg_details(char *buf)
 	if (using_rhel)
 		ram_size = totalram_pages() * PAGE_SIZE;
 	else {
-		if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 0, 0))
-			ram_size = totalram_pages() * PAGE_SIZE;
-		else { // totalram_pages() undefined on the BeagleBone running an older 4.19 kernel..
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5, 0, 0)
+		ram_size = totalram_pages() * PAGE_SIZE;
+#else  // totalram_pages() undefined on the BeagleBone running an older 4.19 kernel..
 #if defined(CONFIG_ARM)
 		// TODO: test on ARM
-			ram_size = totalram_pages * PAGE_SIZE;
+		ram_size = totalram_pages * PAGE_SIZE;
 #endif
-		}
+#endif
 	}
 
 #if defined(CONFIG_ARM64)
