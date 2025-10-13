@@ -31,7 +31,7 @@ export EMB=0  # set to 1 for 'embedded' systems; simpler [no float point, etc]
 
 export SPARSE_SHOW=1
 export SHOW_VSYSCALL_PAGE=0
-export SHOW_STATS=0
+export SHOW_STATS=1
 
 # kernel seg display configs
 export SHOW_KERNELSEG=1
