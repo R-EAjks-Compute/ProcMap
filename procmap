@@ -301,8 +301,12 @@ validate_pid()
 [[ ! -f ${KSEGFILE} ]] && {
    echo "${name}: *FATAL* : procmap's kernel detail report file (${KSEGFILE})
 seems to be unavailable?
-Check: has procmap been correctly installed (with it's kernel detail report) the
-first time? (You can rerun the installer - sudo ./install_procmap - if required.)
+If this is the first run, plese first install procmap by running
+ sudo ./install_procmap
+
+Else, (re)check: has procmap been correctly installed (with it's kernel detail
+report) the first time?
+(You can rerun the installer - sudo ./install_procmap - if required.)
 Aborting..."
    exit 1
 }
